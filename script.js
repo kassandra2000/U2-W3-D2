@@ -5,7 +5,7 @@ const form = document.querySelector("form");
 const label = document.querySelector("label");
 const span = document.querySelector(".span");
 
-const arrOfName = [];
+let arrOfName = [];
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 });
@@ -50,26 +50,25 @@ window.addEventListener("DOMContentLoaded", () => {
   if (localStorageName) {
     console.log(JSON.parse(localStorageName));
     let text = "";
-    JSON.parse(localStorageName).forEach((ele) => {
+    const arrFromStorage = JSON.parse(localStorageName);
+    arrFromStorage.forEach((ele) => {
       text += " " + ele;
       label.innerText = text;
     });
+
+    arrOfName = arrFromStorage;
   }
 });
 
-
-let i =
- setInterval(() => {
+let i = 0;
+setInterval(() => {
   sessionStorage.setItem("i", i);
-  const time = sessionStorage.getItem("i");
-
   i++;
-  console.log(i);
-  span.innerText = i;
+  span.innerText = i ;
 }, 1000);
 
 window.addEventListener("DOMContentLoaded", () => {
-    const time = sessionStorage.getItem("i");
-    i = time;
-    span.innerText = time
-})
+  const time = sessionStorage.getItem("i");
+  i = time ?? 0;
+  span.innerText = i;
+});
