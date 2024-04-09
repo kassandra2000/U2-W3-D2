@@ -3,6 +3,7 @@ const btnSave = document.querySelector(".btn1");
 const btnRemove = document.querySelector(".btn2");
 const form = document.querySelector("form");
 const label = document.querySelector("label");
+const span = document.querySelector(".span");
 
 const arrOfName = [];
 form.addEventListener("submit", (e) => {
@@ -56,8 +57,19 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-let i=0
-setInterval(() => {
-    i++
-    console.log(i)
+
+let i =
+ setInterval(() => {
+  sessionStorage.setItem("i", i);
+  const time = sessionStorage.getItem("i");
+
+  i++;
+  console.log(i);
+  span.innerText = i;
 }, 1000);
+
+window.addEventListener("DOMContentLoaded", () => {
+    const time = sessionStorage.getItem("i");
+    i = time;
+    span.innerText = time
+})
